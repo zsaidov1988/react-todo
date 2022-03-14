@@ -10,8 +10,8 @@ services:
     volumes:
       - '.:/app'
       - '/app/node_modules'
-    ports:
-      - 3001:3000
+    # ports:
+    #   - 3001:3000
     labels:
       # Traefik dan foydalanishga ruhsat ushbu servis uchun
       - traefik.enable=true
@@ -27,4 +27,4 @@ services:
 
 networks:
   traefik-public:
-    external: false
+    external: true
