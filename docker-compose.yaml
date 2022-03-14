@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
 
-  my-todo:
+  mytodo:
     build:
       context: .
       dockerfile: Dockerfile
@@ -16,10 +16,10 @@ services:
       # Traefik dan foydalanishga ruhsat ushbu servis uchun
       - traefik.enable=true
       # Docker service ichda ishlash uchun HTTPS port
-      - traefik.http.services.app.loadbalancer.server.port=3001
+      - traefik.http.services.mytodo.loadbalancer.server.port=3001
       # Traefik foydalanadigan domen
-      - traefik.http.routers.app-http.entrypoints=http
-      - traefik.http.routers.app-http.rule=Host(`traefik.zafardevops.uz`)
+      - traefik.http.routers.mytodo.entrypoints=http
+      - traefik.http.routers.mytodo.rule=Host(`traefik.zafardevops.uz`)
       # Foydalaniladigan networkni kiritish
       - traefik.docker.network=traefik-public
     networks:
