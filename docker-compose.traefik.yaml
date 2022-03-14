@@ -5,10 +5,13 @@ services:
     image: traefik:v2.3
     ports:
       - 80:80
+      - 443:443
     restart: always
     volumes:
       # Traefik boshqa servislar labellarini ko`rishi uchun
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      # certificate larni saqlash uchun
+      - traefik-public-certificates:/certificates
     command:
       # Traefik docker service larning labellarini ko`rishi uchun
       - --providers.docker
@@ -16,6 +19,10 @@ services:
       - --providers.docker.exposedbydefault=false
       # http 80 portni eshitib turuvchi endpointni yaratadi
       - --entrypoints.http.address=:80
+      - --entrypoints.https.address=:443
+      - --certificatesresolvers.le.acme.email=tiangolo@gmail.com
+      - --certificatesresolvers.le.acme.storage=/certificates/acme.json
+      - --certificatesresolvers.le.acme.tlschallenge=true
       # HTTP requestlar access logiga ruhsat
       - --accesslog
       # Traefik loglariga ruhsat

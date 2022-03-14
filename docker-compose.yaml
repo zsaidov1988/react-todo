@@ -16,12 +16,19 @@ services:
       # Traefik dan foydalanishga ruhsat ushbu servis uchun
       - traefik.enable=true
       # Docker service ichda ishlash uchun HTTPS port
-      - traefik.http.services.mytodo.loadbalancer.server.port=3001
+      - traefik.http.services.app.loadbalancer.server.port=3001
       # Traefik foydalanadigan domen
-      - traefik.http.routers.mytodo.entrypoints=http
-      - traefik.http.routers.mytodo.rule=Host(`traefik.zafardevops.uz`)
+      - traefik.http.routers.app-http.entrypoints=http
+      - traefik.http.routers.app-http.rule=Host(`traefik.zafardevops.uz`)
       # Foydalaniladigan networkni kiritish
       - traefik.docker.network=traefik-public
+      - traefik.http.routers.app-https.entrypoints=https
+      - traefik.http.routers.app-https.rule=Host(`traefik.zafardevops.uz`)
+      - traefik.http.routers.app-https.tls.certresolver=le
+      - traefik.http.routers.app-https.tls=true
+      - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
+      - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
+      - traefik.http.routers.app-http.middlewares=https-redirect
     networks:
       - traefik-public
 
