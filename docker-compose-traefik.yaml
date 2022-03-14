@@ -1,3 +1,5 @@
+version: '3.7'
+
 services:
   traefik:
     image: traefik:v2.3
@@ -21,6 +23,7 @@ services:
     networks:
       # Traefik va boshqa servislar o`zaro aloqasi uchun public HTTPS tarmoq
       - traefik-public
+      
 networks:
   traefik-public:
     external: true
