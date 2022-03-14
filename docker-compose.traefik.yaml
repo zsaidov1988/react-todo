@@ -34,3 +34,6 @@ services:
 networks:
   traefik-public:
     external: true
+
+volumes:
+  traefik-public-certificates:
