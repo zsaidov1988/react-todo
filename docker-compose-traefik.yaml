@@ -1,0 +1,26 @@
+services:
+  traefik:
+    image: traefik:v2.3
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      # Traefik boshqa servislar labellarini ko`rishi uchun
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command:
+      # Traefik docker service larning labellarini ko`rishi uchun
+      - --providers.docker
+      # Hamma docker service larni expose qilmaydi
+      - --providers.docker.exposedbydefault=false
+      # http 80 portni eshitib turuvchi endpointni yaratadi
+      - --entrypoints.http.address=:80
+      # HTTP requestlar access logiga ruhsat
+      - --accesslog
+      # Traefik loglariga ruhsat
+      - --log
+    networks:
+      # Traefik va boshqa servislar o`zaro aloqasi uchun public HTTPS tarmoq
+      - traefik-public
+networks:
+  traefik-public:
+    external: true
