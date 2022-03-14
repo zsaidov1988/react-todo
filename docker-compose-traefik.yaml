@@ -23,7 +23,7 @@ services:
     networks:
       # Traefik va boshqa servislar o`zaro aloqasi uchun public HTTPS tarmoq
       - traefik-public
-      
+
 networks:
   traefik-public:
     external: true

@@ -10,13 +10,13 @@ services:
     volumes:
       - '.:/app'
       - '/app/node_modules'
-    ports:
-      - 3001:3000
+    # ports:
+    #   - 3001:3000
     labels:
       # Traefik dan foydalanishga ruhsat ushbu servis uchun
       - traefik.enable=true
       # Docker service ichda ishlash uchun HTTPS port
-      - traefik.http.services.app.loadbalancer.server.port=3001
+      - traefik.http.services.app.loadbalancer.server.port=80
       # Traefik foydalanadigan domen
       - traefik.http.routers.app-http.entrypoints=http
       - traefik.http.routers.app-http.rule=Host(`traefik.zafardevops.uz`)
