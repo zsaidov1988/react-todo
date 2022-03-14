@@ -2,7 +2,7 @@ version: '3.7'
 services:
   my-todo:
     ports:
-      - 80:3000
+      - 3001:3000
 networks:
   traefik-public:
     external: false
