@@ -1,0 +1,37 @@
+.header {
+  background-color: rgb(52, 147, 255);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo-link {
+  text-decoration: none;
+}
+
+.navbar__list {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.navbar__link {
+  display: block;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: rgb(80, 80, 80);
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.navbar__link:hover {
+  color: white;
+}
+
+.navbar__link--active {
+  color: rgb(46, 46, 46);
+  font-weight: bold;
+}
